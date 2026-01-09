@@ -4,6 +4,7 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // 1. "Contact" dihapus dari sini agar tidak muncul di list utama (mencegah double)
   const menuItems = [
     { id: "education", label: "Education" },
     { id: "experience", label: "Experience" },
@@ -15,7 +16,7 @@ function Navbar() {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const offset = 80; // Sesuaikan dengan tinggi navbar
+    const offset = 80; 
     const bodyRect = document.body.getBoundingClientRect().top;
     const elementRect = el.getBoundingClientRect().top;
     const elementPosition = elementRect - bodyRect;
@@ -29,26 +30,21 @@ function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
-  const handleContactClick = () => {
-    window.location.href = "mailto:example@portfolio.com";
-  };
-
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Ambil posisi scroll saat ini
       const scrollPos = window.scrollY;
 
-      // 2. Jika posisi scroll sangat dekat dengan atas (kurang dari 100px), 
-      // langsung set null dan berhenti. Ini kunci agar tidak otomatis kuning.
       if (scrollPos < 100) {
         setActiveSection(null);
         return;
       }
 
-      // 3. Logika deteksi section
-      const currentPos = scrollPos + 180; // offset sedikit lebih besar untuk akurasi
+      const currentPos = scrollPos + 180;
       
-      for (const item of menuItems) {
+      // Kita tambahkan "contact" ke dalam loop deteksi agar tombol bisa berubah warna/status
+      const allSections = [...menuItems, { id: "contact" }];
+      
+      for (const item of allSections) {
         const section = document.getElementById(item.id);
         if (!section) continue;
 
@@ -62,9 +58,7 @@ function Navbar() {
       }
     };
 
-    // Jalankan sekali saat mount untuk cek posisi awal
     handleScroll();
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -99,18 +93,22 @@ function Navbar() {
             ))}
           </ul>
 
+          {/* 2. Tombol Contact Tunggal: Sekarang mengarah ke Section Contact */}
           <button
-            onClick={handleContactClick}
-            className="bg-yellow-600 text-black px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider 
-                       hover:bg-yellow-700 transition-all duration-300 shadow-md active:scale-95"
+            onClick={() => scrollToSection("contact")}
+            className={`px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-md active:scale-95 border-2 ${
+                activeSection === "contact"
+                  ? "bg-yellow-700 border-yellow-700 text-black"
+                  : "bg-yellow-600 border-yellow-600 text-black hover:bg-yellow-700 hover:border-yellow-700"
+              }`}
           >
             Contact
           </button>
         </div>
 
-        {/* Hamburger Button (Desktop Hidden) */}
+        {/* Hamburger Button */}
         <button
-          className="md:hidden p-2 text-black focus:outline-none"
+          className="md:hidden p-2 text-black focus:outline-none z-50"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -140,9 +138,11 @@ function Navbar() {
               {item.label}
             </li>
           ))}
+          
+          {/* Tombol Contact di Mobile */}
           <button
-            onClick={handleContactClick}
-            className="mt-4 bg-yellow-600 text-black px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-yellow-700 shadow-lg"
+            onClick={() => scrollToSection("contact")}
+            className="mt-4 bg-yellow-600 text-black px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-yellow-700 shadow-lg active:scale-95 transition-transform"
           >
             Contact Me
           </button>

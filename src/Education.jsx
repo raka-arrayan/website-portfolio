@@ -4,9 +4,9 @@ export default function Education() {
     const educationData = [
         {
             institution: "Universitas Indonesia",
-            location: "Depok",
+            location: "Depok, Indonesia",
             degree: "Bachelor of Computer Engineering",
-            period: "Aug 2023 – Aug 2027 (Expected)",
+            period: "Aug 2023 – 2027 (Expected)",
             details: [
                 "GPA: 3.52 / 4.00",
                 "Focusing on hardware-software integration, embedded systems, and data structures."
@@ -15,7 +15,7 @@ export default function Education() {
         },
         {
             institution: "SMA Negeri 42 Jakarta",
-            location: "Jakarta",
+            location: "Jakarta, Indonesia",
             degree: "Senior High School (Science Major)",
             period: "Jul 2020 – Apr 2023",
             details: [
@@ -30,50 +30,61 @@ export default function Education() {
     return (
         <section
             id="education"
-            className="bg-white px-6 md:px-12 py-24 border-t border-gray-50"
+            className="bg-white px-6 md:px-12 py-24 border-t border-gray-100"
         >
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-5xl mx-auto">
                 {/* SECTION TITLE */}
                 <div className="mb-16">
-                    <h2 className="text-3xl md:text-5xl font-black text-black uppercase tracking-tighter">
+                    <h2 className="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight">
                         Education
                     </h2>
-                    <div className="w-20 h-2 bg-yellow-600 mt-2"></div>
+                    <div className="w-16 h-1 bg-yellow-600 mt-3"></div>
                 </div>
 
-                {/* TIMELINE CONTENT */}
-                <div className="relative border-l-2 border-gray-100 ml-4 md:ml-0">
+                {/* EDUCATION CARDS CONTAINER */}
+                <div className="space-y-8">
                     {educationData.map((edu, index) => (
-                        <div key={index} className="mb-16 ml-8 relative">
-                            {/* Bullet Point on Timeline */}
-                            <div className={`absolute -left-[41px] top-1 w-4 h-4 rounded-full border-4 border-white ${edu.isCurrent ? 'bg-yellow-600' : 'bg-black'}`}></div>
+                        <div 
+                            key={index} 
+                            className="group relative bg-white border border-gray-200 p-8 transition-all duration-300 hover:border-yellow-600 hover:shadow-xl hover:shadow-gray-100"
+                        >
+                            {/* Accent Line (Tipis di samping) */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gray-100 group-hover:bg-yellow-600 transition-colors"></div>
 
-                            <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                                <div className="flex-1">
-                                    <h3 className="text-2xl font-black text-black leading-none mb-1">
+                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                                <div className="flex-1 pl-2">
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <span className="text-xs font-bold tracking-widest text-yellow-600 uppercase">
+                                            {edu.location}
+                                        </span>
+                                        {edu.isCurrent && (
+                                            <span className="text-[10px] px-2 py-0.5 bg-yellow-50 text-yellow-700 border border-yellow-200 font-bold uppercase rounded-full">
+                                                Current
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-black mb-1">
                                         {edu.institution}
                                     </h3>
-                                    <p className="text-yellow-600 font-bold text-sm uppercase tracking-widest mb-3">
-                                        {edu.location}
-                                    </p>
                                     
-                                    <p className="text-xl font-bold text-gray-800 mb-4">
+                                    <p className="text-lg font-medium text-gray-600 mb-6">
                                         {edu.degree}
                                     </p>
 
                                     <ul className="space-y-3">
                                         {edu.details.map((detail, idx) => (
-                                            <li key={idx} className="flex items-start gap-3 text-gray-600 text-lg leading-relaxed">
-                                                <span className="text-yellow-600 mt-1.5">•</span>
+                                            <li key={idx} className="flex items-start gap-3 text-gray-500 text-sm leading-relaxed">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-yellow-600 mt-1.5 shrink-0"></div>
                                                 <span>{detail}</span>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
 
-                                {/* Date/Period */}
-                                <div className="md:text-right">
-                                    <span className={`inline-block px-4 py-1 rounded-full text-sm font-bold tracking-wide ${edu.isCurrent ? 'bg-yellow-600 text-black' : 'bg-gray-100 text-gray-500'}`}>
+                                {/* Period Tag */}
+                                <div className="md:text-right shrink-0">
+                                    <span className="text-sm font-semibold text-gray-400 tabular-nums">
                                         {edu.period}
                                     </span>
                                 </div>
