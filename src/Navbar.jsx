@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import Logo from "./assets/Logo.png";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // 1. "Contact" dihapus dari sini agar tidak muncul di list utama (mencegah double)
   const menuItems = [
     { id: "education", label: "Education" },
     { id: "experience", label: "Experience" },
@@ -16,7 +16,7 @@ function Navbar() {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const offset = 80; 
+    const offset = 80;
     const bodyRect = document.body.getBoundingClientRect().top;
     const elementRect = el.getBoundingClientRect().top;
     const elementPosition = elementRect - bodyRect;
@@ -24,9 +24,9 @@ function Navbar() {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth"
+      behavior: "smooth",
     });
-    
+
     setIsMobileMenuOpen(false);
   };
 
@@ -40,10 +40,9 @@ function Navbar() {
       }
 
       const currentPos = scrollPos + 180;
-      
-      // Kita tambahkan "contact" ke dalam loop deteksi agar tombol bisa berubah warna/status
+
       const allSections = [...menuItems, { id: "contact" }];
-      
+
       for (const item of allSections) {
         const section = document.getElementById(item.id);
         if (!section) continue;
@@ -66,13 +65,16 @@ function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-2xl font-black tracking-tighter text-black"
+          className="flex items-center"
         >
-          RAKA.
+          <img
+            src={Logo}
+            alt="Raka Logo"
+            className="h-8 w-auto object-contain"
+          />
         </button>
 
         {/* Desktop Menu */}
@@ -93,14 +95,14 @@ function Navbar() {
             ))}
           </ul>
 
-          {/* 2. Tombol Contact Tunggal: Sekarang mengarah ke Section Contact */}
+          {/* Tombol Contact Tunggal: Sekarang mengarah ke Section Contact */}
           <button
             onClick={() => scrollToSection("contact")}
             className={`px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-md active:scale-95 border-2 ${
-                activeSection === "contact"
-                  ? "bg-yellow-700 border-yellow-700 text-black"
-                  : "bg-yellow-600 border-yellow-600 text-black hover:bg-yellow-700 hover:border-yellow-700"
-              }`}
+              activeSection === "contact"
+                ? "bg-yellow-700 border-yellow-700 text-black"
+                : "bg-yellow-600 border-yellow-600 text-black hover:bg-yellow-700 hover:border-yellow-700"
+            }`}
           >
             Contact
           </button>
@@ -112,9 +114,21 @@ function Navbar() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <div className="w-6 h-5 relative flex flex-col justify-between">
-            <span className={`w-full h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`w-full h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`} />
-            <span className={`w-full h-0.5 bg-black transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span
+              className={`w-full h-0.5 bg-black transition-all duration-300 ${
+                isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black transition-all duration-300 ${
+                isMobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-black transition-all duration-300 ${
+                isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
           </div>
         </button>
       </div>
@@ -138,7 +152,7 @@ function Navbar() {
               {item.label}
             </li>
           ))}
-          
+
           {/* Tombol Contact di Mobile */}
           <button
             onClick={() => scrollToSection("contact")}
