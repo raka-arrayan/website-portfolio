@@ -11,7 +11,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 
 // Import Assets
 import beasiswa from "./assets/beasiswa.jpeg";
-import ime from "./assets/ime.jpeg";
+import ime from "./assets/Ime.jpeg";
 import kemenkeu from "./assets/kemenkeu.jpeg";
 import trui from "./assets/Trui.jpg";
 
