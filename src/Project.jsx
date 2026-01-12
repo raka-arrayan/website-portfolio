@@ -97,7 +97,7 @@ const projectsData = [
     title: "PropAI - Property Price Aggregator",
     image: Propai,
     tech: "React, Node.js, ML",
-    github: "https://github.com/raka-arrayan",
+    github: "https://github.com/raka-arrayan/PROP_AI",
     description:
       "A property price aggregator platform. Supported by a machine learning model that analyzes property attributes to generate accurate price estimates.",
   },
