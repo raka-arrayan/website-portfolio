@@ -1,4 +1,4 @@
-import Navbar from "./navbar";
+import Navbar from "./navbar.jsx";
 import Welcome from "./Welcome";
 import Education from "./Education";
 import Experience from "./Experience";
