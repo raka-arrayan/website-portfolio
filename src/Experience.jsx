@@ -10,7 +10,7 @@ import {
 import { HiArrowNarrowRight } from "react-icons/hi";
 
 // Import Logo Assets
-import LogoKemenkeu from "./assets/Logokemenkeu.png";
+import LogoKemenkeu from "./assets/LogoKemenkeu.png";
 import LogoIme from "./assets/Logoime.png";
 import LogoTrui from "./assets/LogoTRUI.png";
 import Logokemendikbud from "./assets/Logokemendikbud.png";
