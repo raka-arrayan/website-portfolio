@@ -3,11 +3,16 @@
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 
+// Import Logos
+import LogoUI from "./assets/LogoUI.png";
+import Logo42 from "./assets/Logo42.png";
+
 export default function Education() {
   const educationData = [
     {
       institution: "Universitas Indonesia",
       location: "Depok, Indonesia",
+      logo: LogoUI, // Menambahkan logo UI
       degree: "Bachelor of Computer Engineering",
       period: "2023 – 2027",
       status: "Expected",
@@ -20,6 +25,7 @@ export default function Education() {
     {
       institution: "SMA Negeri 42 Jakarta",
       location: "Jakarta, Indonesia",
+      logo: Logo42, // Menambahkan logo SMA 42
       degree: "Senior High School (Science Major)",
       period: "2020 – 2023",
       status: "Graduated",
@@ -31,18 +37,16 @@ export default function Education() {
     },
   ];
 
-  // Varian animasi untuk container (mengatur jeda antar elemen)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3, // Jeda 0.3 detik antar item
+        staggerChildren: 0.3,
       },
     },
   };
 
-  // Varian animasi untuk setiap item (muncul dari bawah)
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -110,18 +114,32 @@ export default function Education() {
                 <div className="absolute -left-[5px] top-3 w-2 h-2 rounded-full bg-zinc-200 group-hover:bg-yellow-600 group-hover:scale-150 transition-all duration-500"></div>
 
                 <div className="bg-white border border-zinc-100 p-8 rounded-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                    <div>
-                      <div className="flex items-center gap-2 text-yellow-600 mb-2">
-                        <FaGraduationCap className="text-lg" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">
-                          {edu.status}
-                        </span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-black leading-tight">
-                        {edu.institution}
-                      </h3>
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-6">
+                    
+                    {/* Instituition & Logo Wrapper */}
+                    <div className="flex items-start gap-5">
+                        {/* Logo Container */}
+                        <div className="w-14 h-14 shrink-0 bg-zinc-50 rounded-xl flex items-center justify-center p-2 border border-zinc-100 group-hover:border-yellow-100 transition-colors">
+                            <img 
+                                src={edu.logo} 
+                                alt={`${edu.institution} logo`} 
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
+
+                        <div>
+                            <div className="flex items-center gap-2 text-yellow-600 mb-1">
+                                <FaGraduationCap className="text-lg" />
+                                <span className="text-[10px] font-bold uppercase tracking-widest">
+                                {edu.status}
+                                </span>
+                            </div>
+                            <h3 className="text-2xl font-bold text-black leading-tight">
+                                {edu.institution}
+                            </h3>
+                        </div>
                     </div>
+
                     <div className="flex flex-col sm:items-end text-xs font-bold text-zinc-400 uppercase tracking-tighter">
                       <div className="flex items-center gap-1">
                         <FaMapMarkerAlt className="text-yellow-600" />{" "}
@@ -141,7 +159,7 @@ export default function Education() {
                   </h4>
 
                   <ul className="grid grid-cols-1 gap-3">
-                    {educationData[index].details.map((detail, idx) => (
+                    {edu.details.map((detail, idx) => (
                       <li
                         key={idx}
                         className="flex items-start gap-4 text-zinc-500 group/item transition-colors"

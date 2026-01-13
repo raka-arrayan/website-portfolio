@@ -9,7 +9,13 @@ import {
 } from "react-icons/io5";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
-// Import Assets
+// Import Logo Assets
+import LogoKemenkeu from "./assets/Logokemenkeu.png";
+import LogoIme from "./assets/Logoime.png";
+import LogoTrui from "./assets/LogoTRUI.png";
+import Logokemendikbud from "./assets/Logokemendikbud.png";
+
+// Import Background Images
 import beasiswa from "./assets/beasiswa.jpeg";
 import ime from "./assets/Ime.jpeg";
 import kemenkeu from "./assets/kemenkeu.jpeg";
@@ -21,6 +27,7 @@ const workExperiences = [
     location: "Central Jakarta",
     role: "Data Analyst Intern",
     date: "Jun 2025 – Aug 2025",
+    logo: LogoKemenkeu, // Pemasangan Logo
     image: kemenkeu,
     description: [
       "Processed and prepared regional and village non-financial data for analysis readiness.",
@@ -37,6 +44,7 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Staff of Science and Technology Development",
     date: "Feb 2024 – Dec 2024",
+    logo: LogoIme, // Pemasangan Logo
     image: ime,
     description: [
       "Served as Teknoskill SQL Mentor for Electrical Engineering students.",
@@ -50,6 +58,7 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Programming Division – Racing Plane Team",
     date: "Mar 2024 – Jan 2025",
+    logo: LogoTrui, // Pemasangan Logo
     image: trui,
     description: [
       "Contributed to software systems for autonomous aircraft control.",
@@ -64,6 +73,7 @@ const scholarships = [
     location: "Nasional",
     role: "Scholarship Awardee",
     date: "Sep 2024 – Present",
+    logo: Logokemendikbud, // Pemasangan Logo
     image: beasiswa,
     description: [
       "Recipient of a competitive national scholarship awarded for academic achievement.",
@@ -107,9 +117,11 @@ export default function Experiences() {
           variants={itemVariants}
           className="group relative bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_50px_rgba(234,179,8,0.1)] hover:-translate-y-2 rounded-2xl"
         >
+          {/* Accent Dekoratif */}
           <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-50/50 rounded-bl-full -z-10 group-hover:bg-yellow-100 transition-colors"></div>
 
           <div className="relative">
+            {/* Bagian Atas: Tanggal & Nomor */}
             <div className="flex justify-between items-start mb-6">
               <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-yellow-600 bg-yellow-50 px-3 py-1 rounded-full uppercase">
                 <IoCalendarOutline /> {item.date}
@@ -119,16 +131,28 @@ export default function Experiences() {
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-yellow-600 transition-colors duration-300">
-              {item.title}
-            </h3>
+            {/* Bagian Logo & Judul */}
+            <div className="flex items-start gap-4 mb-4">
+              {/* Logo Container */}
+              <div className="w-14 h-14 shrink-0 bg-zinc-50 rounded-xl flex items-center justify-center p-2 border border-zinc-100 group-hover:border-yellow-200 transition-colors">
+                <img
+                  src={item.logo}
+                  alt={`${item.title} logo`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-black leading-tight group-hover:text-yellow-600 transition-colors duration-300">
+                {item.title}
+              </h3>
+            </div>
 
+            {/* Role & Lokasi */}
             <div className="flex items-center gap-2 text-gray-400 text-xs font-semibold mb-8 uppercase tracking-tighter">
-              <IoLocationOutline className="text-yellow-600" /> {item.location}{" "}
-              | {item.role}
+              <IoLocationOutline className="text-yellow-600" /> {item.location} | {item.role}
             </div>
           </div>
 
+          {/* Tombol Detail */}
           <button
             onClick={() => setActive(item)}
             className="group/btn relative w-full overflow-hidden py-4 px-6 border border-black rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300"
@@ -170,7 +194,7 @@ export default function Experiences() {
         </motion.div>
 
         <div className="space-y-32">
-          {/* WORK */}
+          {/* 01. WORK */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
@@ -190,7 +214,7 @@ export default function Experiences() {
             {renderCards(workExperiences)}
           </motion.div>
 
-          {/* ORGANIZATION */}
+          {/* 02. ORGANIZATION */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
@@ -210,7 +234,7 @@ export default function Experiences() {
             {renderCards(organizationalExperiences)}
           </motion.div>
 
-          {/* SCHOLARSHIP */}
+          {/* 03. SCHOLARSHIP */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
