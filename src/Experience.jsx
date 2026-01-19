@@ -27,7 +27,7 @@ const workExperiences = [
     location: "Central Jakarta",
     role: "Data Analyst Intern",
     date: "Jun 2025 – Aug 2025",
-    logo: LogoKemenkeu, // Pemasangan Logo
+    logo: LogoKemenkeu, 
     image: kemenkeu,
     description: [
       "Processed and prepared regional and village non-financial data for analysis readiness.",
@@ -44,7 +44,7 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Staff of Science and Technology Development",
     date: "Feb 2024 – Dec 2024",
-    logo: LogoIme, // Pemasangan Logo
+    logo: LogoIme, 
     image: ime,
     description: [
       "Served as Teknoskill SQL Mentor for Electrical Engineering students.",
@@ -58,7 +58,7 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Programming Division – Racing Plane Team",
     date: "Mar 2024 – Jan 2025",
-    logo: LogoTrui, // Pemasangan Logo
+    logo: LogoTrui, 
     image: trui,
     description: [
       "Contributed to software systems for autonomous aircraft control.",
@@ -73,7 +73,7 @@ const scholarships = [
     location: "Nasional",
     role: "Scholarship Awardee",
     date: "Sep 2024 – Present",
-    logo: Logokemendikbud, // Pemasangan Logo
+    logo: Logokemendikbud, 
     image: beasiswa,
     description: [
       "Recipient of a competitive national scholarship awarded for academic achievement.",
