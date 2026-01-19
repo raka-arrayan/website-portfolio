@@ -20,7 +20,7 @@ const projectsData = [
   {
     id: 1,
     category: "Data Analyst",
-    title: "British Airways Customer Reviews Dashboard",
+    title: "British Airways Customer Reviews Dashboard Using Tableau",
     image: Tableau,
     tech: "Microsoft Excel, Tableau",
     github: "https://github.com/raka-arrayan/British-Airways-customer-Reviews-Dashboard-Using-Tableau",
@@ -38,7 +38,7 @@ const projectsData = [
   {
     id: 3,
     category: "Data Analyst",
-    title: "Store Sales and Logistics Performance (Looker)",
+    title: "Store Sales and Logistics Performance using Looker Studio",
     image: Looker,
     tech: "Microsoft Excel, Looker Studio",
     github: "https://github.com/raka-arrayan/Store-Sales-and-Logistics-Performance-Dashboard-Using-Looker-Studio",
