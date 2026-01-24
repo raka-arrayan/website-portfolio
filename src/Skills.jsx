@@ -7,20 +7,12 @@ import {
   SiTableau,
   SiLooker,
   SiPython,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiReact,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
   SiNumpy,
   SiPandas,
 } from "react-icons/si";
 import { FaFileExcel } from "react-icons/fa";
 import {
   MdOutlineAnalytics,
-  MdTerminal,
   MdOutlineScience,
   MdOutlineBarChart,
   MdAutoGraph,
@@ -28,83 +20,48 @@ import {
 
 const skillData = [
   {
-    mainTitle: "Data",
-    mainIcon: <MdOutlineScience />,
-    subCategories: [
-      {
-        subTitle: "Data & Analytics",
-        skills: [
-          { name: "SQL", icon: <SiPostgresql /> },
-          { name: "BigQuery", icon: <SiGooglebigquery /> },
-          { name: "Excel", icon: <FaFileExcel /> },
-        ],
-      },
-      {
-        subTitle: "Business Intelligence & Visualization",
-        skills: [
-          { name: "Power BI", icon: <MdOutlineBarChart /> }, // Menggunakan Md agar tidak Error
-          { name: "Tableau", icon: <SiTableau /> },
-          { name: "Looker", icon: <SiLooker /> },
-        ],
-      },
-      {
-        subTitle: "Programming",
-        skills: [
-          { name: "Python", icon: <SiPython /> },
-          { name: "NumPy", icon: <SiNumpy /> },
-          { name: "Pandas", icon: <SiPandas /> },
-          { name: "Matplotlib", icon: <MdOutlineBarChart /> },
-          { name: "Seaborn", icon: <MdAutoGraph /> },
-          { name: "Machine Learning", icon: <MdOutlineAnalytics /> },
-        ],
-      },
+    subTitle: "Data & Analytics",
+    skills: [
+      { name: "SQL", icon: <SiPostgresql />, color: "#4169E1" },
+      { name: "BigQuery", icon: <SiGooglebigquery />, color: "#4285F4" },
+      { name: "Excel", icon: <FaFileExcel />, color: "#1D6F42" },
     ],
   },
   {
-    mainTitle: "Web Development",
-    mainIcon: <MdTerminal />,
-    subCategories: [
-      {
-        subTitle: "Frontend",
-        skills: [
-          { name: "React", icon: <SiReact /> },
-          { name: "Tailwind", icon: <SiTailwindcss /> },
-          { name: "JavaScript", icon: <SiJavascript /> },
-          { name: "HTML", icon: <SiHtml5 /> },
-          { name: "CSS", icon: <SiCss3 /> },
-        ],
-      },
-      {
-        subTitle: "Backend",
-        skills: [
-          { name: "Node.js", icon: <SiNodedotjs /> },
-          { name: "Express", icon: <SiExpress /> },
-        ],
-      },
+    subTitle: "Business Intelligence & Visualization",
+    skills: [
+      { name: "Power BI", icon: <MdOutlineBarChart />, color: "#F2C811" },
+      { name: "Tableau", icon: <SiTableau />, color: "#E97627" },
+      { name: "Looker", icon: <SiLooker />, color: "#4285F4" },
+    ],
+  },
+  {
+    subTitle: "Programming & Data Science",
+    skills: [
+      { name: "Python", icon: <SiPython />, color: "#3776AB" },
+      { name: "NumPy", icon: <SiNumpy />, color: "#4D77CF" },
+      { name: "Pandas", icon: <SiPandas />, color: "#150458" },
+      { name: "Matplotlib", icon: <MdOutlineBarChart />, color: "#11557C" },
+      { name: "Seaborn", icon: <MdAutoGraph />, color: "#4C8CBF" },
+      { name: "Machine Learning", icon: <MdOutlineAnalytics />, color: "#FF6F00" },
     ],
   },
 ];
 
-// Varian Animasi
-const panelVariants = {
-  hidden: { opacity: 0, y: 40 },
+const containerVariants = {
+  hidden: { opacity: 0 },
   visible: { 
     opacity: 1, 
-    y: 0,
-    transition: { 
-      duration: 0.8, 
-      ease: "easeOut",
-      staggerChildren: 0.1 
-    }
+    transition: { staggerChildren: 0.1 } 
   }
 };
 
 const skillVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.4, ease: "backOut" }
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
   }
 };
 
@@ -113,7 +70,7 @@ export default function Skills() {
     <section id="skills" className="bg-white py-24 border-t border-gray-100 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         
-        {/* HEADER SECTION */}
+        {/* HEADER SECTION*/}
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -124,75 +81,66 @@ export default function Skills() {
           <h2 className="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight">
             My Skills
           </h2>
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: 64 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="h-1 bg-yellow-600 mt-3"
-          ></motion.div>
+          <div className="w-16 h-1 bg-yellow-600 mt-3"></div>
         </motion.div>
 
-        {/* SKILLS PANELS (2 Boxes) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {skillData.map((panel, idx) => (
-            <motion.div
-              key={idx}
-              variants={panelVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="relative group bg-zinc-50/50 p-8 md:p-12 rounded-[2.5rem] border border-transparent hover:border-yellow-600/30 hover:bg-white transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] flex flex-col"
-            >
-              {/* Main Title & Icon */}
-              <div className="flex items-center gap-4 mb-12">
-                <div className="w-14 h-14 flex items-center justify-center bg-black text-white text-3xl rounded-2xl group-hover:bg-yellow-600 group-hover:text-black transition-colors duration-300">
-                  {panel.mainIcon}
+        {/* MAIN PANEL */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="relative bg-zinc-50/50 p-8 md:p-16 rounded-[2.5rem] border border-zinc-100 shadow-[0_40px_100px_rgba(0,0,0,0.03)]"
+        >
+          {/* Watermark Logo */}
+          <div className="absolute -right-10 -top-10 text-[15rem] text-zinc-100/40 -z-0 pointer-events-none rotate-12">
+            <MdOutlineScience />
+          </div>
+
+          <div className="relative z-10 space-y-16">
+            {skillData.map((category, idx) => (
+              <div key={idx}>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-[1px] w-8 bg-zinc-200"></div>
+                  <h3 className="text-xs font-black text-zinc-400 uppercase tracking-[0.4em]">
+                    {category.subTitle}
+                  </h3>
                 </div>
-                <h3 className="text-2xl font-black text-black uppercase tracking-tighter">
-                  {panel.mainTitle}
-                </h3>
-              </div>
 
-              {/* Sub Categories Mapping */}
-              <div className="space-y-12">
-                {panel.subCategories.map((sub, sIdx) => (
-                  <div key={sIdx}>
-                    <div className="flex items-center gap-3 mb-6">
-                      <div className="w-2 h-2 bg-yellow-600 rounded-full"></div>
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400">
-                        {sub.subTitle}
-                      </h4>
-                    </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
+                  {category.skills.map((skill, sIdx) => (
+                    <motion.div
+                      key={sIdx}
+                      variants={skillVariants}
+                      whileHover={{ 
+                        y: -8,
+                        transition: { duration: 0.3 }
+                      }}
+                      className="group relative bg-white border border-zinc-100 p-6 rounded-[2rem] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl hover:shadow-zinc-200/50"
+                    >
+                      {/* Glow Effect on Hover */}
+                      <div 
+                        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-[2rem]"
+                        style={{ backgroundColor: skill.color }}
+                      ></div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                      {sub.skills.map((skill, kIdx) => (
-                        <motion.div
-                          key={kIdx}
-                          variants={skillVariants}
-                          whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                          className="flex flex-col items-center justify-center p-4 bg-white border border-zinc-100 rounded-2xl shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300 group/item"
-                        >
-                          <span className="text-2xl text-zinc-400 group-hover/item:text-yellow-600 transition-colors mb-2">
-                            {skill.icon}
-                          </span>
-                          <span className="text-[10px] font-bold text-zinc-500 group-hover/item:text-black uppercase tracking-tighter text-center">
-                            {skill.name}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                      <div 
+                        className="text-4xl mb-4 transition-transform duration-500 group-hover:scale-110"
+                        style={{ color: skill.color }}
+                      >
+                        {skill.icon}
+                      </div>
+                      
+                      <span className="text-[11px] font-black text-zinc-500 group-hover:text-black uppercase tracking-tighter text-center transition-colors">
+                        {skill.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
-
-              {/* Watermark Icon */}
-              <div className="absolute right-10 top-10 text-[10rem] text-zinc-100/50 group-hover:text-yellow-500/5 transition-colors duration-500 -z-0 pointer-events-none">
-                {panel.mainIcon}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

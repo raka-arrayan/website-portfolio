@@ -14,9 +14,19 @@ import NLP from "./assets/NLP.png";
 import News from "./assets/News.png";
 import Dengue from "./assets/Dengue.png";
 import Propai from "./assets/Propai.png";
-import Email from "./assets/Email.png"; // Import Project Baru
+import Email from "./assets/Email.png"; 
+import Uber from "./assets/Uber.jpg"; 
 
 const projectsData = [
+  {
+    id: 10,
+    category: "Data Analyst",
+    title: "Uber Travel Pattern Analysis Using Google BigQuery",
+    image: Uber,
+    tech: "Google Sheets, SQL, Google BigQuery",
+    github: "https://github.com/raka-arrayan/Uber-Travel-Pattern-Analysis-Using-Google-BigQuery",
+    description: "This project aims to analyze Uber travel patterns using historical trip data. The analysis was conducted to understand demand patterns, peak hours, and travel efficiency based on time and day category (weekdays vs. weekends). The entire process was carried out using Google BigQuery.",
+  },
   {
     id: 1,
     category: "Data Analyst",
@@ -56,7 +66,7 @@ const projectsData = [
   {
     id: 5,
     category: "Data Science",
-    title: "Email Campaign Analysis", // Project Baru
+    title: "Email Campaign Analysis", 
     image: Email,
     tech: "Python, Machine Learning",
     github: "https://github.com/raka-arrayan/Email-Campaign-Analysis",

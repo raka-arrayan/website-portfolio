@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaFileDownload } from "react-icons/fa";
 import photo from "./assets/photo.jpeg";
 
-const roles = ["Data Analyst", "Data Scientist", "Web Developer"];
+const roles = ["Data Analyst", "Data Scientist"];
 
 export default function Welcome() {
   const [currentRole, setCurrentRole] = useState(0);

@@ -12,20 +12,20 @@ export default function Education() {
     {
       institution: "Universitas Indonesia",
       location: "Depok, Indonesia",
-      logo: LogoUI, // Menambahkan logo UI
+      logo: LogoUI, 
       degree: "Bachelor of Computer Engineering",
       period: "2023 – 2027",
       status: "Expected",
       details: [
         "GPA: 3.52 / 4.00",
-        "Focusing on hardware-software integration, embedded systems, and data structures.",
+        "Focusing on hardware software integration, embedded systems, and data structures.",
       ],
       isCurrent: true,
     },
     {
       institution: "SMA Negeri 42 Jakarta",
       location: "Jakarta, Indonesia",
-      logo: Logo42, // Menambahkan logo SMA 42
+      logo: Logo42, 
       degree: "Senior High School (Science Major)",
       period: "2020 – 2023",
       status: "Graduated",
