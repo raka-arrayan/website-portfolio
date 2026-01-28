@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaFileDownload } from "react-icons/fa";
-import photo from "./assets/photo.jpeg";
+import photo from "./assets/Image.jpeg";
 
 const roles = ["Data Analyst", "Data Scientist"];
 
