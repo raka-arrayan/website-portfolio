@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedin, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { HiOutlineArrowRight, HiCheck } from "react-icons/hi";
-import Logo from "./assets/Logo.png";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -16,111 +15,106 @@ export default function Contact() {
       label: emailAddress,
       icon: <FaEnvelope />,
       link: `mailto:${emailAddress}`,
-      color: "group-hover:text-yellow-600",
+      color: "group-hover:text-blue-400",
     },
     {
       name: "WhatsApp",
       label: "+62 895 0909 9349",
       icon: <FaWhatsapp />,
       link: "https://wa.me/6289509099349",
-      color: "group-hover:text-green-500",
+      color: "group-hover:text-emerald-400",
     },
     {
       name: "LinkedIn",
       label: "Raka Arrayan Muttaqien",
       icon: <FaLinkedin />,
       link: "https://www.linkedin.com/in/rakaarrayan27/",
-      color: "group-hover:text-blue-600",
+      color: "group-hover:text-blue-400",
     },
   ];
 
-  // Logika untuk tombol Get In Touch
   const handleContactAction = () => {
-    // 1. Mencoba membuka aplikasi email default
     window.location.href = `mailto:${emailAddress}`;
-
-    // 2. Menyalin ke clipboard sebagai backup
     navigator.clipboard.writeText(emailAddress);
-
-    // 3. Memberikan feedback visual
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
 
-  // Varian Animasi Framer Motion
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section id="contact" className="bg-white overflow-hidden">
-      {/* 1. BOLD YELLOW BANNER*/}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="bg-yellow-500 py-20 px-6 md:px-12 mx-4 md:mx-12 rounded-[2.5rem] mt-12 shadow-2xl shadow-yellow-200/50"
-      >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <section id="contact" className="bg-slate-950 overflow-hidden text-slate-100">
+      {/* 1. COLLABORATION BANNER */}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-slate-900/80 border border-slate-800 p-8 md:p-12 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6"
+        >
           <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-black text-black leading-tight mb-3">
-              What are you waiting for?
+            <span className="text-blue-400 font-mono text-xs uppercase tracking-wider block mb-2 font-medium">
+              Let's Connect & Collaborate
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+              Ready to work together?
             </h2>
-            <p className="text-black/70 font-bold uppercase tracking-[0.2em] text-xs">
-              Let's collaborate and build something great!
+            <p className="text-slate-400 text-sm">
+              Open to Data Analytics, Data Science, and Data Engineering roles & projects.
             </p>
           </div>
 
-          {/* Tombol Interaktif dengan Feedback Copied */}
           <motion.button
             onClick={handleContactAction}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="min-w-[200px] h-[60px] flex items-center justify-center gap-3 bg-black text-white px-10 rounded-full font-bold text-sm uppercase tracking-widest shadow-xl hover:bg-zinc-800 transition-all overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-mono text-xs font-medium uppercase tracking-wider transition-colors flex items-center gap-2.5 shrink-0"
           >
             <AnimatePresence mode="wait">
               {copied ? (
                 <motion.span
                   key="copied"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="flex items-center gap-2 text-yellow-500"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2"
                 >
-                  Email Copied! <HiCheck size={18} />
+                  Email Copied! <HiCheck size={16} />
                 </motion.span>
               ) : (
                 <motion.span
                   key="getintouch"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="flex items-center gap-3"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="flex items-center gap-2"
                 >
-                  Get In Touch <HiOutlineArrowRight className="text-xl" />
+                  Get In Touch <HiOutlineArrowRight className="text-base" />
                 </motion.span>
               )}
             </AnimatePresence>
           </motion.button>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
 
-      {/* 2. FORMAL CONTACT DETAILS */}
-      <div className="py-32 px-6 md:px-12 border-t border-gray-50 mt-12">
+      {/* 2. CONTACT DETAILS */}
+      <div className="py-24 px-6 md:px-12 border-t border-slate-900 mt-20">
         <motion.div
           className="max-w-6xl mx-auto"
           initial="hidden"
@@ -128,19 +122,17 @@ export default function Contact() {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          <motion.div className="mb-16" variants={itemVariants}>
-            <h2 className="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight">
+          <motion.div className="mb-14" variants={itemVariants}>
+            <span className="text-xs font-mono uppercase tracking-widest text-blue-400 block mb-2">
+              Reach Out Directly
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               Contact
             </h2>
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 64 }}
-              transition={{ duration: 0.8 }}
-              className="h-1 bg-yellow-600 mt-3"
-            ></motion.div>
+            <div className="h-0.5 w-16 bg-blue-500 mt-3 rounded-full"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {contactLinks.map((contact, idx) => (
               <motion.a
                 key={idx}
@@ -148,59 +140,56 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={itemVariants}
-                className="group relative bg-white border border-zinc-100 p-10 rounded-[2.5rem] transition-all duration-500 hover:border-yellow-600 hover:shadow-[0_30px_60px_rgba(0,0,0,0.06)] overflow-hidden"
+                className="group bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 p-6 rounded-xl transition-colors flex flex-col justify-between"
               >
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-zinc-50 group-hover:bg-yellow-600 transition-colors"></div>
-                <div className="text-3xl text-black mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                <div className="text-2xl text-slate-400 group-hover:text-blue-400 mb-4 transition-colors">
                   {contact.icon}
                 </div>
-                <h4 className="text-[10px] font-black text-zinc-300 uppercase tracking-[0.3em] mb-2 group-hover:text-yellow-600 transition-colors">
-                  {contact.name}
-                </h4>
-                <p
-                  className={`text-sm font-bold text-zinc-800 break-words ${contact.color} transition-colors`}
-                >
-                  {contact.label}
-                </p>
+                <div>
+                  <h4 className="text-[10px] font-mono font-medium text-slate-500 uppercase tracking-widest mb-1">
+                    {contact.name}
+                  </h4>
+                  <p
+                    className={`text-sm font-medium text-slate-200 break-words ${contact.color} transition-colors`}
+                  >
+                    {contact.label}
+                  </p>
+                </div>
               </motion.a>
             ))}
           </div>
         </motion.div>
       </div>
 
-      {/* 3. SLEEK BLACK FOOTER */}
-      <footer className="bg-black text-white pt-24 pb-12 px-6 md:px-12">
+      {/* 3. CLEAN TEXT-BASED FOOTER */}
+      <footer className="bg-black text-white pt-16 pb-12 px-6 md:px-12 border-t border-slate-900">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between gap-16 mb-20">
+          <div className="flex flex-col md:flex-row justify-between gap-10 mb-12">
             <div className="max-w-xs">
+              {/* Text Logo: Simple "Raka." */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="mb-8 hover:opacity-80 transition-opacity"
+                className="mb-4 text-xl font-bold tracking-tight text-white hover:text-blue-400 transition-colors focus:outline-none"
               >
-                <img
-                  src={Logo}
-                  alt="Logo"
-                  className="h-10 w-auto object-contain"
-                />
+                Raka<span className="text-blue-500">.</span>
               </button>
-              <p className="text-zinc-500 text-sm leading-relaxed font-medium">
-                A Computer Engineering student passionate about data science and
-                web technology. Constantly evolving with the tech landscape.
+              <p className="text-slate-400 text-xs leading-relaxed">
+                Computer Engineering student at Universitas Indonesia. Building robust data engineering pipelines & analytics.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-16">
+            <div className="grid grid-cols-2 gap-10">
               <div>
-                <h5 className="text-yellow-500 font-bold uppercase text-[10px] tracking-[0.4em] mb-8">
+                <h5 className="text-slate-300 font-mono font-semibold uppercase text-[10px] tracking-wider mb-4">
                   Navigation
                 </h5>
-                <ul className="space-y-4 text-sm font-semibold text-zinc-500 uppercase tracking-tighter">
-                  {["home", "education", "experience", "projects"].map(
+                <ul className="space-y-2 text-xs font-mono text-slate-400 uppercase tracking-wide">
+                  {["home", "education", "experience", "skills", "projects"].map(
                     (item) => (
                       <li key={item}>
                         <a
                           href={`#${item}`}
-                          className="hover:text-white hover:translate-x-1 inline-block transition-all"
+                          className="hover:text-blue-400 transition-colors"
                         >
                           {item}
                         </a>
@@ -210,15 +199,16 @@ export default function Contact() {
                 </ul>
               </div>
               <div>
-                <h5 className="text-yellow-500 font-bold uppercase text-[10px] tracking-[0.4em] mb-8">
+                <h5 className="text-slate-300 font-mono font-semibold uppercase text-[10px] tracking-wider mb-4">
                   Socials
                 </h5>
-                <ul className="space-y-4 text-sm font-semibold text-zinc-500 uppercase tracking-tighter">
+                <ul className="space-y-2 text-xs font-mono text-slate-400 uppercase tracking-wide">
                   <li>
                     <a
                       href="https://www.linkedin.com/in/rakaarrayan27/"
                       target="_blank"
-                      className="hover:text-white hover:translate-x-1 inline-block transition-all"
+                      rel="noreferrer"
+                      className="hover:text-blue-400 transition-colors"
                     >
                       LinkedIn
                     </a>
@@ -227,7 +217,8 @@ export default function Contact() {
                     <a
                       href="https://github.com/raka-arrayan"
                       target="_blank"
-                      className="hover:text-white hover:translate-x-1 inline-block transition-all"
+                      rel="noreferrer"
+                      className="hover:text-blue-400 transition-colors"
                     >
                       GitHub
                     </a>
@@ -236,7 +227,8 @@ export default function Contact() {
                     <a
                       href="https://wa.me/6289509099349"
                       target="_blank"
-                      className="hover:text-white hover:translate-x-1 inline-block transition-all"
+                      rel="noreferrer"
+                      className="hover:text-blue-400 transition-colors"
                     >
                       WhatsApp
                     </a>
@@ -246,8 +238,9 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-600 text-[10px] font-bold uppercase tracking-[0.3em]">
+          <div className="border-t border-slate-900 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-slate-500 text-[10px] font-mono uppercase tracking-wider">
             <p>© 2026 RAKA ARRAYAN MUTTAQIEN</p>
+            <p>Portfolio</p>
           </div>
         </div>
       </footer>

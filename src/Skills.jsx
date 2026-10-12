@@ -9,79 +9,89 @@ import {
   SiPython,
   SiNumpy,
   SiPandas,
+  SiApacheairflow,
+  SiDocker,
+  SiGit,
 } from "react-icons/si";
 import { FaFileExcel } from "react-icons/fa";
 import {
   MdOutlineAnalytics,
-  MdOutlineScience,
   MdOutlineBarChart,
   MdAutoGraph,
 } from "react-icons/md";
 
 const skillData = [
   {
-    subTitle: "Data & Analytics",
+    subTitle: "Data Engineering & Warehousing",
     skills: [
-      { name: "SQL", icon: <SiPostgresql />, color: "#4169E1" },
-      { name: "BigQuery", icon: <SiGooglebigquery />, color: "#4285F4" },
-      { name: "Excel", icon: <FaFileExcel />, color: "#1D6F42" },
+      { name: "SQL", icon: <SiPostgresql /> },
+      { name: "BigQuery", icon: <SiGooglebigquery /> },
+      { name: "Airflow", icon: <SiApacheairflow /> },
+      { name: "Excel", icon: <FaFileExcel /> },
+      { name: "Git", icon: <SiGit /> },
+      { name: "Docker", icon: <SiDocker /> },
     ],
   },
   {
     subTitle: "Business Intelligence & Visualization",
     skills: [
-      { name: "Power BI", icon: <MdOutlineBarChart />, color: "#F2C811" },
-      { name: "Tableau", icon: <SiTableau />, color: "#E97627" },
-      { name: "Looker", icon: <SiLooker />, color: "#4285F4" },
+      { name: "Power BI", icon: <MdOutlineBarChart /> },
+      { name: "Tableau", icon: <SiTableau /> },
+      { name: "Looker Studio", icon: <SiLooker /> },
     ],
   },
   {
-    subTitle: "Programming & Data Science",
+    subTitle: "Programming & Machine Learning",
     skills: [
-      { name: "Python", icon: <SiPython />, color: "#3776AB" },
-      { name: "NumPy", icon: <SiNumpy />, color: "#4D77CF" },
-      { name: "Pandas", icon: <SiPandas />, color: "#150458" },
-      { name: "Matplotlib", icon: <MdOutlineBarChart />, color: "#11557C" },
+      { name: "Python", icon: <SiPython /> },
+      { name: "NumPy", icon: <SiNumpy /> },
+      { name: "Pandas", icon: <SiPandas /> },
+      { name: "Matplotlib", icon: <MdOutlineBarChart /> },
       { name: "Seaborn", icon: <MdAutoGraph />, color: "#4C8CBF" },
-      { name: "Machine Learning", icon: <MdOutlineAnalytics />, color: "#FF6F00" },
+      { name: "Machine Learning", icon: <MdOutlineAnalytics /> },
     ],
   },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1, 
-    transition: { staggerChildren: 0.1 } 
-  }
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
 };
 
 const skillVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
 };
 
 export default function Skills() {
   return (
-    <section id="skills" className="bg-white py-24 border-t border-gray-100 overflow-hidden">
+    <section
+      id="skills"
+      className="bg-slate-950 py-28 border-t border-slate-900 text-slate-100"
+    >
       <div className="max-w-6xl mx-auto px-6 md:px-12">
-        
-        {/* HEADER SECTION*/}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        {/* HEADER SECTION */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight">
-            My Skills
+          <span className="text-xs font-mono uppercase tracking-widest text-blue-400 block mb-2">
+            Technical Capabilities
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Core Skills & Tools
           </h2>
-          <div className="w-16 h-1 bg-yellow-600 mt-3"></div>
+          <div className="h-0.5 w-16 bg-blue-500 mt-3 rounded-full"></div>
         </motion.div>
 
         {/* MAIN PANEL */}
@@ -90,48 +100,34 @@ export default function Skills() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative bg-zinc-50/50 p-8 md:p-16 rounded-[2.5rem] border border-zinc-100 shadow-[0_40px_100px_rgba(0,0,0,0.03)]"
+          className="bg-slate-900/50 p-8 md:p-12 rounded-2xl border border-slate-800/80"
         >
-          {/* Watermark Logo */}
-          <div className="absolute -right-10 -top-10 text-[15rem] text-zinc-100/40 -z-0 pointer-events-none rotate-12">
-            <MdOutlineScience />
-          </div>
-
-          <div className="relative z-10 space-y-16">
+          <div className="space-y-12">
             {skillData.map((category, idx) => (
               <div key={idx}>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="h-[1px] w-8 bg-zinc-200"></div>
-                  <h3 className="text-xs font-black text-zinc-400 uppercase tracking-[0.4em]">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-0.5 w-6 bg-blue-500"></div>
+                  <h3 className="text-xs font-mono font-medium text-slate-300 uppercase tracking-widest">
                     {category.subTitle}
                   </h3>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
                   {category.skills.map((skill, sIdx) => (
                     <motion.div
                       key={sIdx}
                       variants={skillVariants}
-                      whileHover={{ 
-                        y: -8,
-                        transition: { duration: 0.3 }
+                      whileHover={{
+                        y: -3,
+                        transition: { duration: 0.2 },
                       }}
-                      className="group relative bg-white border border-zinc-100 p-6 rounded-[2rem] flex flex-col items-center justify-center transition-all duration-300 hover:shadow-2xl hover:shadow-zinc-200/50"
+                      className="group bg-slate-950/80 border border-slate-800/80 p-4 rounded-xl flex flex-col items-center justify-center transition-colors hover:border-blue-500/40"
                     >
-                      {/* Glow Effect on Hover */}
-                      <div 
-                        className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-[2rem]"
-                        style={{ backgroundColor: skill.color }}
-                      ></div>
-
-                      <div 
-                        className="text-4xl mb-4 transition-transform duration-500 group-hover:scale-110"
-                        style={{ color: skill.color }}
-                      >
+                      <div className="text-2xl mb-2 text-slate-300 group-hover:text-blue-400 transition-colors">
                         {skill.icon}
                       </div>
-                      
-                      <span className="text-[11px] font-black text-zinc-500 group-hover:text-black uppercase tracking-tighter text-center transition-colors">
+
+                      <span className="text-xs font-mono text-slate-400 group-hover:text-slate-200 uppercase tracking-tight text-center transition-colors">
                         {skill.name}
                       </span>
                     </motion.div>

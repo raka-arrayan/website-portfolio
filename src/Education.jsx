@@ -12,20 +12,21 @@ export default function Education() {
     {
       institution: "Universitas Indonesia",
       location: "Depok, Indonesia",
-      logo: LogoUI, 
+      logo: LogoUI,
       degree: "Bachelor of Computer Engineering",
       period: "2023 – 2027",
       status: "Expected",
       details: [
-        "GPA: 3.52 / 4.00",
-        "Focusing on hardware software integration, embedded systems, and data structures.",
+        "GPA: 3.56 / 4.00",
+        "Relevant Coursework: Data Analytics, Database Systems & Practicum, Statistics, Probability & Stochastic Processes, Artificial Intelligence, Linear Algebra (Basic & Advanced), Big Data Technology",
+        "Honors: Awardee of Beasiswa Unggulan Kemendikbud RI 2024 (National competitive scholarship)",
       ],
       isCurrent: true,
     },
     {
       institution: "SMA Negeri 42 Jakarta",
       location: "Jakarta, Indonesia",
-      logo: Logo42, 
+      logo: Logo42,
       degree: "Senior High School (Science Major)",
       period: "2020 – 2023",
       status: "Graduated",
@@ -42,24 +43,24 @@ export default function Education() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
   return (
     <section
       id="education"
-      className="bg-white px-6 md:px-12 py-32 border-t border-gray-100"
+      className="bg-slate-950 px-6 md:px-12 py-28 border-t border-slate-900 text-slate-100"
     >
       <motion.div
         className="max-w-5xl mx-auto"
@@ -69,105 +70,92 @@ export default function Education() {
         variants={containerVariants}
       >
         {/* SECTION TITLE */}
-        <motion.div className="mb-20" variants={itemVariants}>
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-[2px] bg-yellow-600"></div>
-            <span className="text-yellow-600 font-bold uppercase tracking-[0.3em] text-xs">
-              Learning Path
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-bold text-black uppercase tracking-tighter">
+        <motion.div className="mb-16" variants={itemVariants}>
+          <span className="text-xs font-mono uppercase tracking-widest text-blue-400 block mb-2">
+            Academic Background
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
             Education
           </h2>
+          <div className="h-0.5 w-16 bg-blue-500 mt-3 rounded-full"></div>
         </motion.div>
 
         {/* TIMELINE CONTAINER */}
-        <div className="relative space-y-12">
+        <div className="space-y-10">
           {educationData.map((edu, index) => (
             <motion.div
               key={index}
-              className="group relative flex flex-col md:flex-row gap-8 md:gap-16"
+              className="group flex flex-col md:flex-row gap-6 md:gap-12"
               variants={itemVariants}
             >
               {/* Date Column (Desktop) */}
-              <div className="md:w-32 pt-2 shrink-0">
-                <div className="sticky top-24">
-                  <span className="text-lg font-black text-zinc-300 group-hover:text-yellow-600 transition-colors duration-500 tabular-nums">
-                    {edu.period.split(" – ")[0]}
-                  </span>
-
-                  {edu.isCurrent && (
-                    <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-1">
-                      To Present
-                    </div>
-                  )}
-                </div>
+              <div className="md:w-32 pt-1 shrink-0">
+                <span className="text-base font-mono font-medium text-slate-400 group-hover:text-blue-400 transition-colors">
+                  {edu.period.split(" – ")[0]}
+                </span>
+                {edu.isCurrent && (
+                  <div className="text-[10px] font-mono text-blue-400 uppercase tracking-wider mt-0.5">
+                    Present
+                  </div>
+                )}
               </div>
 
               {/* Main Content Card */}
               <div
-                className={`flex-1 relative border-l border-zinc-100 pl-8 md:pl-12 group-hover:border-yellow-600 transition-colors duration-500 ${
-                  index === educationData.length - 1 ? "pb-0" : "pb-12"
+                className={`flex-1 relative border-l border-slate-800 pl-6 md:pl-10 group-hover:border-slate-700 transition-colors ${
+                  index === educationData.length - 1 ? "pb-0" : "pb-10"
                 }`}
               >
-                {/* Decorative Dot on Line */}
-                <div className="absolute -left-[5px] top-3 w-2 h-2 rounded-full bg-zinc-200 group-hover:bg-yellow-600 group-hover:scale-150 transition-all duration-500"></div>
+                {/* Timeline Dot */}
+                <div className="absolute -left-[5px] top-2.5 w-2.5 h-2.5 rounded-full bg-slate-800 border border-slate-700 group-hover:bg-blue-500 group-hover:border-blue-400 transition-colors"></div>
 
-                <div className="bg-white border border-zinc-100 p-8 rounded-2xl transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:-translate-y-1">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 mb-6">
-                    
-                    {/* Instituition & Logo Wrapper */}
-                    <div className="flex items-start gap-5">
-                        {/* Logo Container */}
-                        <div className="w-14 h-14 shrink-0 bg-zinc-50 rounded-xl flex items-center justify-center p-2 border border-zinc-100 group-hover:border-yellow-100 transition-colors">
-                            <img 
-                                src={edu.logo} 
-                                alt={`${edu.institution} logo`} 
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
+                <div className="bg-slate-900/60 border border-slate-800/80 p-7 rounded-2xl transition-all hover:border-slate-700">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-5">
+                    {/* Institution & Logo */}
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 shrink-0 bg-white rounded-xl flex items-center justify-center p-2 border border-slate-700">
+                        <img
+                          src={edu.logo}
+                          alt={`${edu.institution} logo`}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
 
-                        <div>
-                            <div className="flex items-center gap-2 text-yellow-600 mb-1">
-                                <FaGraduationCap className="text-lg" />
-                                <span className="text-[10px] font-bold uppercase tracking-widest">
-                                {edu.status}
-                                </span>
-                            </div>
-                            <h3 className="text-2xl font-bold text-black leading-tight">
-                                {edu.institution}
-                            </h3>
+                      <div>
+                        <div className="flex items-center gap-1.5 text-blue-400 text-xs font-mono mb-1">
+                          <FaGraduationCap />
+                          <span>{edu.status}</span>
                         </div>
+                        <h3 className="text-xl font-bold text-white">
+                          {edu.institution}
+                        </h3>
+                      </div>
                     </div>
 
-                    <div className="flex flex-col sm:items-end text-xs font-bold text-zinc-400 uppercase tracking-tighter">
-                      <div className="flex items-center gap-1">
-                        <FaMapMarkerAlt className="text-yellow-600" />{" "}
-                        {edu.location}
+                    <div className="flex flex-col sm:items-end text-xs font-mono text-slate-400">
+                      <div className="flex items-center gap-1.5">
+                        <FaMapMarkerAlt className="text-blue-400" /> {edu.location}
                       </div>
-                      <div className="flex items-center gap-1 mt-1">
-                        <FaCalendarAlt className="text-yellow-600" />{" "}
-                        {edu.period}
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <FaCalendarAlt className="text-blue-400" /> {edu.period}
                       </div>
                     </div>
                   </div>
 
-                  <div className="h-[1px] w-full bg-zinc-50 mb-6"></div>
+                  <div className="h-[1px] w-full bg-slate-800/80 mb-5"></div>
 
-                  <h4 className="text-lg font-semibold text-zinc-800 mb-4 italic">
+                  <h4 className="text-sm font-medium text-slate-300 mb-3 font-mono">
                     {edu.degree}
                   </h4>
 
-                  <ul className="grid grid-cols-1 gap-3">
+                  <ul className="space-y-2.5">
                     {edu.details.map((detail, idx) => (
                       <li
                         key={idx}
-                        className="flex items-start gap-4 text-zinc-500 group/item transition-colors"
+                        className="flex items-start gap-2.5 text-slate-300 text-xs leading-relaxed"
                       >
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-200 group-hover/item:bg-yellow-600 shrink-0 transition-colors"></span>
-                        <span className="text-sm leading-relaxed group-hover/item:text-zinc-900">
-                          {detail}
-                        </span>
+                        <span className="mt-1.5 w-1 h-1 rounded-full bg-blue-400 shrink-0"></span>
+                        <span>{detail}</span>
                       </li>
                     ))}
                   </ul>

@@ -10,12 +10,14 @@ import {
 import { HiArrowNarrowRight } from "react-icons/hi";
 
 // Import Logo Assets
+import LogoCimb from "./assets/Logo_Cimb.png";
 import LogoKemenkeu from "./assets/LogoKemenkeu.png";
 import LogoIme from "./assets/Logoime.png";
 import LogoTrui from "./assets/LogoTRUI.png";
 import Logokemendikbud from "./assets/Logokemendikbud.png";
 
-// Import Background Images
+// Import Background / Modal Images
+import FotoCimb from "./assets/Foto_Cimb.jpeg";
 import beasiswa from "./assets/beasiswa.jpeg";
 import ime from "./assets/Ime.jpeg";
 import kemenkeu from "./assets/kemenkeu.jpeg";
@@ -23,12 +25,36 @@ import trui from "./assets/Trui.jpg";
 
 const workExperiences = [
   {
+    title: "PT Bank CIMB Niaga Tbk",
+    location: "South Jakarta",
+    role: "Data Report Management Intern (MIS & Business Finance)",
+    date: "23 Jun – 22 Dec 2026",
+    logo: LogoCimb,
+    image: FotoCimb,
+    techStack: [
+      "GCP",
+      "BigQuery",
+      "Apache Airflow",
+      "Dataform",
+      "Looker Studio",
+      "Google Apps Script",
+    ],
+    description: [
+      "Documented and optimized the on premises to cloud data migration architecture (Google Cloud Platform) utilizing Google BigQuery, Apache Airflow, and Dataform.",
+      "Designed and developed an integrated Executive Daily Dashboard using Google BigQuery, Google Sheets, and Google Looker Studio as part of an initiative to migrate away from legacy reporting systems (Power Builder/SSRS).",
+      "Created comprehensive data lineage documentation based on SQL Agent job scripts structured into Excel formats to support the executive daily dashboard project.",
+      "Built script automation and data workflows using Google Apps Script to enhance the efficiency of tabular data exports and executive daily reporting.",
+      "Managed document governance for the Enterprise Data Platform (EDP) migration project.",
+    ],
+  },
+  {
     title: "Kementerian Keuangan Republik Indonesia",
     location: "Central Jakarta",
     role: "Data Analyst Intern",
     date: "Jun 2025 – Aug 2025",
-    logo: LogoKemenkeu, 
+    logo: LogoKemenkeu,
     image: kemenkeu,
+    techStack: ["Data Analysis", "Data Cleaning", "Reporting", "Decision Support"],
     description: [
       "Processed and prepared regional and village non-financial data for analysis readiness.",
       "Assisted in organizing and cleaning datasets to support decision making.",
@@ -44,8 +70,9 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Staff of Science and Technology Development",
     date: "Feb 2024 – Dec 2024",
-    logo: LogoIme, 
+    logo: LogoIme,
     image: ime,
+    techStack: ["SQL Mentoring", "Workshop", "AI Lead"],
     description: [
       "Served as Teknoskill SQL Mentor for Electrical Engineering students.",
       "Manager of Media and Partnership Division at National Electrical Summit (NEST UI).",
@@ -58,8 +85,9 @@ const organizationalExperiences = [
     location: "UI Depok",
     role: "Programming Division – Racing Plane Team",
     date: "Mar 2024 – Jan 2025",
-    logo: LogoTrui, 
+    logo: LogoTrui,
     image: trui,
+    techStack: ["Autonomous Control", "Algorithm Logic", "Hardware/Software"],
     description: [
       "Contributed to software systems for autonomous aircraft control.",
       "Developed algorithms and control logic integrating hardware and software.",
@@ -73,8 +101,9 @@ const scholarships = [
     location: "Nasional",
     role: "Scholarship Awardee",
     date: "Sep 2024 – Present",
-    logo: Logokemendikbud, 
+    logo: Logokemendikbud,
     image: beasiswa,
+    techStack: ["Academic Excellence", "Leadership Development"],
     description: [
       "Recipient of a competitive national scholarship awarded for academic achievement.",
       "Provided financial support and development opportunities for academic and personal growth.",
@@ -87,16 +116,16 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
@@ -108,58 +137,73 @@ export default function Experiences() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className="grid grid-cols-1 md:grid-cols-2 gap-10"
+      viewport={{ once: true, margin: "-50px" }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-6"
     >
       {data.map((item, idx) => (
         <motion.div
           key={idx}
           variants={itemVariants}
-          className="group relative bg-white border border-gray-100 p-8 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_20px_50px_rgba(234,179,8,0.1)] hover:-translate-y-2 rounded-2xl"
+          className="group relative bg-slate-900/60 border border-slate-800/80 hover:border-slate-700 p-7 flex flex-col justify-between transition-all duration-300 rounded-2xl"
         >
-          {/* Accent Dekoratif */}
-          <div className="absolute top-0 right-0 w-24 h-24 bg-yellow-50/50 rounded-bl-full -z-10 group-hover:bg-yellow-100 transition-colors"></div>
-
-          <div className="relative">
-            {/* Bagian Atas: Tanggal & Nomor */}
-            <div className="flex justify-between items-start mb-6">
-              <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-yellow-600 bg-yellow-50 px-3 py-1 rounded-full uppercase">
-                <IoCalendarOutline /> {item.date}
+          <div>
+            {/* Header: Date Badge & Index Number */}
+            <div className="flex justify-between items-center mb-5">
+              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-slate-800/60 px-3 py-1 rounded-md border border-slate-700/60">
+                <IoCalendarOutline className="text-blue-400" /> {item.date}
               </div>
-              <span className="text-2xl font-black text-gray-100 group-hover:text-yellow-200 transition-colors">
+              <span className="text-xl font-mono text-slate-600">
                 0{idx + 1}
               </span>
             </div>
 
-            {/* Bagian Logo & Judul */}
-            <div className="flex items-start gap-4 mb-4">
-              {/* Logo Container */}
-              <div className="w-14 h-14 shrink-0 bg-zinc-50 rounded-xl flex items-center justify-center p-2 border border-zinc-100 group-hover:border-yellow-200 transition-colors">
+            {/* Logo & Judul */}
+            <div className="flex items-start gap-4 mb-3">
+              <div className="w-12 h-12 shrink-0 bg-white rounded-xl flex items-center justify-center p-2 border border-slate-700 shadow-sm">
                 <img
                   src={item.logo}
                   alt={`${item.title} logo`}
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h3 className="text-xl font-bold text-black leading-tight group-hover:text-yellow-600 transition-colors duration-300">
-                {item.title}
-              </h3>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  {item.role}
+                </p>
+              </div>
             </div>
 
-            {/* Role & Lokasi */}
-            <div className="flex items-center gap-2 text-gray-400 text-xs font-semibold mb-8 uppercase tracking-tighter">
-              <IoLocationOutline className="text-yellow-600" /> {item.location} | {item.role}
+            {/* Lokasi */}
+            <div className="flex items-center gap-1.5 text-slate-400 text-xs font-mono mb-4">
+              <IoLocationOutline className="text-blue-400" /> {item.location}
             </div>
+
+            {/* Tech Stack Badges */}
+            {item.techStack && (
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {item.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/70 text-slate-300 border border-slate-700/60"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Tombol Detail */}
           <button
             onClick={() => setActive(item)}
-            className="group/btn relative w-full overflow-hidden py-4 px-6 border border-black rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] transition-all duration-300"
+            className="group/btn w-full py-2.5 px-4 border border-slate-800 hover:border-blue-500/50 rounded-lg text-xs font-mono font-medium tracking-wide uppercase transition-all bg-slate-900/80 hover:bg-slate-800/80"
           >
-            <div className="absolute inset-0 w-0 bg-black transition-all duration-300 group-hover/btn:w-full"></div>
-            <span className="relative z-10 flex items-center justify-center gap-2 text-black group-hover/btn:text-white transition-colors">
-              See Project Details <HiArrowNarrowRight className="text-lg" />
+            <span className="flex items-center justify-center gap-2 text-slate-300 group-hover/btn:text-blue-300 transition-colors">
+              View Experience Details{" "}
+              <HiArrowNarrowRight className="text-sm group-hover/btn:translate-x-1 transition-transform" />
             </span>
           </button>
         </motion.div>
@@ -170,45 +214,40 @@ export default function Experiences() {
   return (
     <section
       id="experience"
-      className="bg-white px-6 md:px-12 py-32 border-t border-gray-100 overflow-hidden"
+      className="bg-slate-950 px-6 md:px-12 py-28 border-t border-slate-900 text-slate-200"
     >
       <div className="max-w-6xl mx-auto">
         {/* HEADER SECTION */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
+          transition={{ duration: 0.6 }}
+          className="mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-black uppercase tracking-tight">
-            Experience
+          <span className="text-xs font-mono uppercase tracking-widest text-blue-400 block mb-2">
+            Career Timeline & History
+          </span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+            Work & Leadership Experience
           </h2>
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: 80 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="h-1.5 bg-yellow-600 mt-4"
-          ></motion.div>
+          <div className="h-0.5 w-16 bg-blue-500 mt-3 rounded-full"></div>
         </motion.div>
 
-        <div className="space-y-32">
+        <div className="space-y-20">
           {/* 01. WORK */}
           <motion.div
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative"
           >
-            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gray-50 hidden md:block"></div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-black text-sm">
-                01
-              </div>
-              <h3 className="text-xl font-bold uppercase tracking-[0.2em] text-black">
-                Professional Internship
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">
+                01 /
+              </span>
+              <h3 className="text-xl font-bold tracking-tight text-white">
+                Professional Internships
               </h3>
             </div>
             {renderCards(workExperiences)}
@@ -220,14 +259,12 @@ export default function Experiences() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative"
           >
-            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gray-50 hidden md:block"></div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="w-12 h-12 rounded-full bg-yellow-600 text-black flex items-center justify-center font-black text-sm">
-                02
-              </div>
-              <h3 className="text-xl font-bold uppercase tracking-[0.2em] text-black">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">
+                02 /
+              </span>
+              <h3 className="text-xl font-bold tracking-tight text-white">
                 Organizational Experiences
               </h3>
             </div>
@@ -240,14 +277,12 @@ export default function Experiences() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative"
           >
-            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gray-50 hidden md:block"></div>
-            <div className="flex items-center gap-6 mb-12">
-              <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center font-black text-sm">
-                03
-              </div>
-              <h3 className="text-xl font-bold uppercase tracking-[0.2em] text-black">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-xs font-mono text-blue-400 uppercase tracking-widest">
+                03 /
+              </span>
+              <h3 className="text-xl font-bold tracking-tight text-white">
                 Honors & Scholarships
               </h3>
             </div>
@@ -262,63 +297,88 @@ export default function Experiences() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center p-6"
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6"
             >
               <div
-                className="absolute inset-0 bg-black/80 backdrop-blur-xl"
+                className="absolute inset-0 bg-slate-950/85 backdrop-blur-md"
                 onClick={() => setActive(null)}
               ></div>
 
               <motion.div
-                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                initial={{ scale: 0.95, opacity: 0, y: 15 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="bg-white w-full max-w-5xl max-h-[85vh] overflow-hidden relative z-10 shadow-[0_50px_100px_rgba(0,0,0,0.5)] flex flex-col md:flex-row rounded-3xl"
+                exit={{ scale: 0.95, opacity: 0, y: 15 }}
+                transition={{ duration: 0.25 }}
+                className="bg-slate-900 border border-slate-800 w-full max-w-4xl max-h-[85vh] overflow-hidden relative z-10 shadow-2xl flex flex-col md:flex-row rounded-2xl"
               >
                 <button
-                  className="absolute top-6 right-6 z-20 bg-black text-white p-3 rounded-full hover:bg-yellow-600 hover:text-black transition-all shadow-lg"
+                  className="absolute top-4 right-4 z-20 bg-slate-800/90 text-slate-300 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-colors border border-slate-700"
                   onClick={() => setActive(null)}
                 >
-                  <IoCloseOutline size={24} />
+                  <IoCloseOutline size={20} />
                 </button>
 
-                <div className="md:w-1/2 h-72 md:h-auto overflow-hidden">
+                <div className="md:w-5/12 h-56 md:h-auto overflow-hidden relative bg-slate-950">
                   <img
                     src={active.image}
                     alt={active.title}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    className="w-full h-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-slate-900/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-5 left-5 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-white rounded-lg p-1.5 border border-slate-700 shadow-md">
+                      <img
+                        src={active.logo}
+                        alt=""
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-mono text-blue-400 uppercase tracking-wider">
+                        {active.location}
+                      </span>
+                      <h4 className="text-xs font-bold text-white">
+                        {active.title}
+                      </h4>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="md:w-1/2 p-10 md:p-16 overflow-y-auto">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="px-4 py-1.5 bg-yellow-100 text-yellow-700 text-[10px] font-black uppercase tracking-widest rounded-full">
+                <div className="md:w-7/12 p-6 md:p-8 overflow-y-auto">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="px-2.5 py-0.5 bg-slate-800 text-blue-300 border border-slate-700 text-xs font-mono rounded">
                       {active.date}
                     </span>
                   </div>
 
-                  <h3 className="text-3xl font-bold text-black mb-2 leading-tight">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1 leading-snug">
                     {active.title}
                   </h3>
-                  <p className="text-sm font-bold text-gray-400 uppercase tracking-[0.2em] mb-10 border-b border-gray-100 pb-6">
+                  <p className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-5 border-b border-slate-800 pb-3">
                     {active.role}
                   </p>
 
-                  <div className="space-y-6">
+                  {active.techStack && (
+                    <div className="flex flex-wrap gap-1.5 mb-5">
+                      {active.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="space-y-3">
                     {active.description.map((item, i) => (
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        key={i}
-                        className="flex gap-5 items-start group/desc"
-                      >
-                        <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 shrink-0 group-hover/desc:scale-150 transition-transform"></div>
-                        <p className="text-gray-600 text-base leading-relaxed">
+                      <div key={i} className="flex gap-3 items-start">
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5 shrink-0"></div>
+                        <p className="text-slate-300 text-xs leading-relaxed">
                           {item}
                         </p>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
                 </div>

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaFileDownload } from "react-icons/fa";
 import photo from "./assets/Image.jpeg";
 
-const roles = ["Data Analyst", "Data Scientist"];
+const roles = ["Data Analyst", "Data Scientist", "Data Engineer"];
 
 export default function Welcome() {
   const [currentRole, setCurrentRole] = useState(0);
@@ -39,59 +39,69 @@ export default function Welcome() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-white px-6 md:px-12 pt-24 pb-12 overflow-hidden relative"
+      className="min-h-screen flex items-center justify-center bg-slate-950 px-6 md:px-12 pt-28 pb-16 overflow-hidden relative text-slate-100"
     >
-      {/* Dekorasi Latar Belakang (Subtle) */}
-      <div className="absolute top-1/4 -left-20 w-64 h-64 bg-yellow-50 rounded-full blur-3xl opacity-60 -z-10"></div>
-      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-zinc-50 rounded-full blur-3xl opacity-60 -z-10"></div>
+      {/* Subtle Background Ambience */}
+      <div className="absolute top-1/3 -left-20 w-80 h-80 bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-sky-500/5 rounded-full blur-[140px] pointer-events-none"></div>
 
-      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24 max-w-6xl w-full">
-        {/* Photo Container (Motion Reveal) */}
+      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 max-w-6xl w-full relative z-10">
+        {/* Photo Container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: "circOut" }}
-          className="relative group"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative group shrink-0"
         >
-          {/* Background Shape */}
-          <div className="absolute -inset-4 bg-yellow-100 rounded-full scale-95 group-hover:scale-105 transition-transform duration-700 -z-10 opacity-50"></div>
+          {/* Subtle Outer Ring */}
+          <div className="absolute -inset-1.5 bg-gradient-to-tr from-blue-500/20 via-slate-800 to-transparent rounded-full blur-md group-hover:from-blue-500/40 transition-all duration-700"></div>
 
           <div className="relative">
             <img
               src={photo}
               alt="Raka Arrayan Muttaqien"
-              className="w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-black shadow-[15px_15px_0px_0px_rgba(217,119,6,1)] z-10 relative transition-all duration-500 group-hover:shadow-[20px_20px_0px_0px_rgba(217,119,6,1)] group-hover:-translate-y-2"
+              className="w-56 h-56 sm:w-64 sm:h-64 lg:w-76 lg:h-76 rounded-full object-cover border-2 border-slate-800 shadow-xl z-10 relative transition-transform duration-500 group-hover:scale-[1.02]"
             />
           </div>
         </motion.div>
 
-        {/* Text Content (Staggered Animation) */}
+        {/* Text Content */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-xl">
+          {/* Status Chip */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs font-mono mb-6"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            Available for Opportunities
+          </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-black mb-6 leading-[1.1] tracking-tighter"
+            transition={{ delay: 0.3 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-[1.15] tracking-tight"
           >
             Hello, I'm <br />
-            <span className="text-black italic">Raka Arrayan</span>
+            <span className="text-white">Raka Arrayan</span>
           </motion.h1>
 
           {/* Dynamic Typing Role */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-            className="h-12 mb-8 flex items-center"
+            transition={{ delay: 0.5 }}
+            className="h-12 mb-6 flex items-center"
           >
-            <div className="bg-zinc-900 px-6 py-2 rounded-lg transform -skew-x-12 border-r-4 border-yellow-600">
-              <span className="text-xl md:text-2xl font-bold text-white transform skew-x-12 inline-block">
+            <div className="bg-slate-900 px-5 py-2 rounded-lg border-l-2 border-blue-500 border-r border-t border-b border-slate-800/80">
+              <span className="text-lg md:text-xl font-mono text-slate-200 inline-block">
                 {showText}
                 <motion.span
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="ml-1 text-yellow-500"
+                  className="ml-1 text-blue-400"
                 >
                   |
                 </motion.span>
@@ -99,74 +109,67 @@ export default function Welcome() {
             </div>
           </motion.div>
 
+          {/* Description */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-zinc-500 text-base md:text-lg leading-relaxed mb-10 font-medium"
+            transition={{ delay: 0.6 }}
+            className="text-slate-400 text-sm md:text-base leading-relaxed mb-8"
           >
-            {/* Description */}
-
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-8">
-              I am a{" "}
-              <span className="font-bold text-black">Computer Engineering</span>{" "}
-              student at the
-              <span className="font-bold text-black border-b-2 border-yellow-600">
-                {" "}
-                University of Indonesia{" "}
-              </span>
-              with a strong commitment to continuous learning. I am motivated to
-              pursue opportunities that challenge me and contribute to the
-              development of my technical and professional skills.
-            </p>
+            Computer Engineering student at the{" "}
+            <span className="text-slate-200 font-medium border-b border-blue-500/40 pb-0.5">
+              University of Indonesia
+            </span>{" "}
+            focused on data analytics, machine learning, and enterprise data architecture. Passionate about building reliable data pipelines and delivering actionable analytical insights.
           </motion.p>
 
-          {/* Actions & Socials (Reveal) */}
+          {/* Actions & Socials */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="flex flex-col sm:flex-row items-center gap-8 w-full sm:w-auto"
+            transition={{ delay: 0.7 }}
+            className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto"
           >
-            {/* CV Button with Fill Effect */}
+            {/* CV Button */}
             <a
               href="https://drive.google.com/drive/folders/1xd1Z2GNYR2p46oNeGTd1m95nOImyyuco"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-full sm:w-auto overflow-hidden px-10 py-4 bg-black rounded-full transition-all duration-300 shadow-xl shadow-zinc-200"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors font-mono text-xs font-medium tracking-wide shadow-sm"
             >
-              <div className="absolute inset-0 w-0 bg-yellow-600 transition-all duration-300 group-hover:w-full"></div>
-              <span className="relative z-10 flex items-center justify-center gap-3 text-white font-bold text-sm uppercase tracking-widest group-hover:text-black">
-                Download CV <FaFileDownload />
-              </span>
+              Download CV <FaFileDownload className="text-xs" />
             </a>
 
-            {/* Social Icons with Hover scale */}
-            <div className="flex gap-8">
+            {/* Social Icons */}
+            <div className="flex gap-3">
               {[
                 {
                   icon: <FaLinkedin />,
                   link: "https://www.linkedin.com/in/rakaarrayan27/",
+                  title: "LinkedIn",
                 },
-                { icon: <FaGithub />, link: "https://github.com/raka-arrayan" },
+                {
+                  icon: <FaGithub />,
+                  link: "https://github.com/raka-arrayan",
+                  title: "GitHub",
+                },
               ].map((social, i) => (
                 <motion.a
                   key={i}
-                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileHover={{ y: -2 }}
                   href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-black text-3xl hover:text-yellow-600 transition-colors"
+                  aria-label={social.title}
+                  className="w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500/40 flex items-center justify-center text-slate-400 hover:text-blue-400 transition-colors"
                 >
-                  {social.icon}
+                  <span className="text-lg">{social.icon}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator removed here */}
     </section>
   );
 }

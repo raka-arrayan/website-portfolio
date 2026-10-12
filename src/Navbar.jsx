@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Logo from "./assets/Logo.png";
 
 function Navbar() {
   const [activeSection, setActiveSection] = useState(null);
@@ -63,45 +62,46 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white border-b border-gray-100 shadow-sm">
+    <nav className="fixed top-0 w-full z-50 bg-slate-950/85 backdrop-blur-xl border-b border-slate-800/80">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        {/* Logo */}
+        {/* Simple Text Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center"
+          className="flex items-center group focus:outline-none"
         >
-          <img
-            src={Logo}
-            alt="Raka Logo"
-            className="h-8 w-auto object-contain"
-          />
+          <span className="text-xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
+            Raka<span className="text-blue-500">.</span>
+          </span>
         </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-10">
-          <ul className="flex items-center gap-8 text-sm font-bold uppercase tracking-widest">
+          <ul className="flex items-center gap-8 text-xs font-mono uppercase tracking-wider">
             {menuItems.map((item) => (
               <li
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`cursor-pointer transition-colors duration-300 ${
+                className={`cursor-pointer transition-all duration-300 relative py-1 ${
                   activeSection === item.id
-                    ? "text-yellow-600"
-                    : "text-black hover:text-yellow-600"
+                    ? "text-blue-400 font-semibold"
+                    : "text-slate-400 hover:text-slate-200"
                 }`}
               >
                 {item.label}
+                {activeSection === item.id && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 rounded-full" />
+                )}
               </li>
             ))}
           </ul>
 
-          {/* Tombol Contact Tunggal: Sekarang mengarah ke Section Contact */}
+          {/* Contact Button */}
           <button
             onClick={() => scrollToSection("contact")}
-            className={`px-6 py-2.5 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-md active:scale-95 border-2 ${
+            className={`px-5 py-2 rounded-lg font-mono text-xs font-medium tracking-wider transition-all duration-300 border ${
               activeSection === "contact"
-                ? "bg-yellow-700 border-yellow-700 text-black"
-                : "bg-yellow-600 border-yellow-600 text-black hover:bg-yellow-700 hover:border-yellow-700"
+                ? "bg-blue-500/20 border-blue-500 text-blue-300"
+                : "bg-slate-900 border-slate-800 text-slate-300 hover:border-blue-500/50 hover:text-blue-300"
             }`}
           >
             Contact
@@ -110,23 +110,23 @@ function Navbar() {
 
         {/* Hamburger Button */}
         <button
-          className="md:hidden p-2 text-black focus:outline-none z-50"
+          className="md:hidden p-2 text-slate-300 focus:outline-none z-50"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <div className="w-6 h-5 relative flex flex-col justify-between">
             <span
-              className={`w-full h-0.5 bg-black transition-all duration-300 ${
-                isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
+              className={`w-full h-0.5 bg-white transition-all duration-300 ${
+                isMobileMenuOpen ? "rotate-45 translate-y-2 bg-blue-400" : ""
               }`}
             />
             <span
-              className={`w-full h-0.5 bg-black transition-all duration-300 ${
+              className={`w-full h-0.5 bg-white transition-all duration-300 ${
                 isMobileMenuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`w-full h-0.5 bg-black transition-all duration-300 ${
-                isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+              className={`w-full h-0.5 bg-white transition-all duration-300 ${
+                isMobileMenuOpen ? "-rotate-45 -translate-y-2 bg-blue-400" : ""
               }`}
             />
           </div>
@@ -135,7 +135,7 @@ function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-white z-[40] transition-transform duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-[40] transition-transform duration-500 ease-in-out md:hidden ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ top: "80px" }}
@@ -145,18 +145,17 @@ function Navbar() {
             <li
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-xl font-bold uppercase tracking-widest transition-colors ${
-                activeSection === item.id ? "text-yellow-600" : "text-black"
+              className={`text-base font-mono uppercase tracking-widest transition-colors ${
+                activeSection === item.id ? "text-blue-400 font-semibold" : "text-slate-300"
               }`}
             >
               {item.label}
             </li>
           ))}
 
-          {/* Tombol Contact di Mobile */}
           <button
             onClick={() => scrollToSection("contact")}
-            className="mt-4 bg-yellow-600 text-black px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-yellow-700 shadow-lg active:scale-95 transition-transform"
+            className="mt-4 bg-blue-500/15 border border-blue-500/40 text-blue-300 px-8 py-3 rounded-lg font-mono text-xs font-semibold uppercase tracking-widest active:scale-95 transition-transform"
           >
             Contact Me
           </button>
